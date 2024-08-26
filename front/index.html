@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="sketch.js" defer></script>
+    <script src="socketHandler.js" defer></script>
+    <script src="highscoreHandler.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main>
+      <!-- sketch will be shown in here -->
+      <section class="highScoreSection">
+      <h1>Highscores:</h1>
+      <ul id="highscores"></ul>
+      </section>
+      <section class="inputSection">
+        <div id="hide-input-section">
+          <h1>Enter your name</h1>
+          <input type="text" maxlength="7" id="name-input" placeholder="Type a player name" />
+          <button id="start-button">start</button>
+        </div>
+      </section>
+      <div id="sketch-holder"></div>
+    </main>
+  </body>
+</html>
+

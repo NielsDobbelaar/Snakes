@@ -1,0 +1,4 @@
+github.com/NielsDobbelaar/goUtils v0.0.0-20240604102856-bd35660427bf h1:FrO/UkIQX4yj30Js4eqmkmiEA0jsovQYuRjlTmUhU0c=
+github.com/NielsDobbelaar/goUtils v0.0.0-20240604102856-bd35660427bf/go.mod h1:Zbll/wuKSxUpnpgDyXaEG9jSeJnvJdO8KhXdPtvcMyQ=
+github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
+github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
