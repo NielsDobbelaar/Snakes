@@ -20,13 +20,13 @@
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
 }
 
-canvas {
+.gameArticle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 ol {
@@ -101,6 +101,7 @@ h1 {
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   /* animated svg bacground from https://www.svgbackgrounds.com/ */
   background-color: #b3d75d;
@@ -211,4 +212,36 @@ summary:hover {
 
 details a {
   color: var(--dark-color);
+}
+
+.mobileArticle {
+  display: none;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mobileSection {
+  width: 90%;
+}
+.mobileSection h1 {
+  font-size: 2em;
+  font-weight: 500;
+  margin: 1em 0;
+  color: var(--primary-color);
+}
+
+.mobileSection p {
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--dark-color);
+}
+
+@media (max-width: 800px) {
+  .gameArticle {
+    display: none;
+  }
+  .mobileArticle {
+    display: flex;
+  }
 }
