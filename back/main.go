@@ -38,7 +38,7 @@ var upgrader = websocket.Upgrader{
 }
 
 const initialSocketTimeout = 8 * time.Second
-const maxConnections = 2
+const maxConnections = 5
 const boardWidth = 100
 const boardHeight = 75
 
