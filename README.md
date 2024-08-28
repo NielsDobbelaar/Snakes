@@ -67,6 +67,7 @@ if you want to play the game, you can find it [here](https://snakes.nielsdobbela
 - [ ] Implement different collision check to give points to "kills"
 - [ ] Implement powerups like speed boost, or extra length
 - [ ] Think of better way of handling head to head collision
+- [ ] Improve spawning locations(not near the edge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
