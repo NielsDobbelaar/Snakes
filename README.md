@@ -11,6 +11,8 @@ Snakes is a simple snake game made in go and javascript. The backend is made in 
 
 This simple game was made as a fun project during the summer break. The goals were to have some fun with p5js, learn a bit more about go and making a (simple) backend for a game.
 
+if you want to play the game, you can find it [here](https://snakes.nielsdobbelaar.com/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
