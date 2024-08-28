@@ -1,8 +1,8 @@
 const highScoresListElement = document.getElementById("highscores");
 
 const printHighScores = () => {
-  // fetch("https://snakes-production.up.railway.app/highscores")
-  fetch("http://localhost:8080/highscores")
+  fetch("https://snakes-production.up.railway.app/highscores")
+    // fetch("http://localhost:8080/highscores")
     .then((response) => {
       return response.json();
     })

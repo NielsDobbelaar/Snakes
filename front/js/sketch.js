@@ -84,11 +84,11 @@ function setup() {
   headColor = color("#121212");
 
   myID = generateUUID();
-  // socketHandler = new SocketHandler(
-  //   "ws://snakes-production.up.railway.app/ws",
-  //   myID,
-  // );
-  socketHandler = new SocketHandler("ws://localhost:8080/ws", myID);
+  socketHandler = new SocketHandler(
+    "ws://snakes-production.up.railway.app/ws",
+    myID,
+  );
+  // socketHandler = new SocketHandler("ws://localhost:8080/ws", myID);
 }
 
 function draw() {
@@ -97,7 +97,7 @@ function draw() {
   checkKey();
   drawSnakes();
   drawMySnake();
-  if (doDrawScore) drawScore();
+  drawScore();
 }
 
 drawGrid = () => {
@@ -168,6 +168,7 @@ function drawSnakes() {
 
     fill(255);
     textSize(12.5);
+    textAlign(LEFT, TOP);
     textAlign(CENTER, CENTER);
     text(
       snake.name,
@@ -178,17 +179,19 @@ function drawSnakes() {
 }
 
 function drawScore() {
+  textStyle(NORMAL);
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  textAlign(LEFT, TOP);
   if (mySnake === null || mySnake === undefined) {
     return;
   }
 
-  let textW = textWidth("color:  " + mySnake.score);
+  let tWidth = textWidth("color:  " + mySnake.score.toString());
   fill(color("rgba(0, 0, 0, 0.5)"));
-  rect(0, 0, textW + 20, 40);
+  rect(0, 0, tWidth + 20, 40);
 
   fill(255);
-  textSize(20);
-  textAlign(LEFT, TOP);
   text("Score: " + mySnake.score, 10, 10);
 }
 
