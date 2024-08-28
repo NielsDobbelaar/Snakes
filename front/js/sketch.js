@@ -85,7 +85,7 @@ function setup() {
 
   myID = generateUUID();
   socketHandler = new SocketHandler(
-    "ws://snakes-production.up.railway.app/ws",
+    "wss://snakes-production.up.railway.app/ws",
     myID,
   );
   // socketHandler = new SocketHandler("ws://localhost:8080/ws", myID);

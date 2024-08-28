@@ -209,12 +209,6 @@ summary:hover {
   color: var(--light-color);
 }
 
-details[open] summary {
-  background-color: var(--primary-color-dark);
-  color: var(--light-color);
-}
-
-details[open] summary:hover {
-  background-color: var(--primary-color);
+details a {
   color: var(--dark-color);
 }

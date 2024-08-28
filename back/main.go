@@ -139,6 +139,8 @@ func enableCORS(next http.Handler) http.Handler {
 
 func main() {
 	fmt.Println("game started")
+	highScores.AddScore("Niels", 1000)
+	highScores.AddScore("Niels", 500)
 	go gameLoop()
 
 	fmt.Println("starting server")
