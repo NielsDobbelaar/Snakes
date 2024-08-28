@@ -100,7 +100,7 @@ func handleMovement() {
 		}
 	}
 
-	if time.Since(lastGrow) > time.Second*growRate || playingPlayers <= 2 {
+	if time.Since(lastGrow) > time.Second*growRate || playingPlayers <= 1 {
 		lastGrow = time.Now()
 	}
 }

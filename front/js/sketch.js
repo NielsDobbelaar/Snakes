@@ -1,9 +1,9 @@
 // constants setup
-const canvasWidth = 1000;
-const canvasHeight = 700;
+let canvasWidth = 750;
+let canvasHeight = 750;
 
 const gameWidth = 100;
-const gameHeight = 70;
+const gameHeight = 75;
 
 let cellWidth;
 let cellHeight;
@@ -12,6 +12,7 @@ let cellHeight;
 let backgroundColor = 0;
 const gridColor = 240;
 const borderColor = 40;
+let headColor = 0;
 
 let socketHandler;
 
@@ -24,27 +25,54 @@ let snakes = [];
 // dom handles
 let nameInput;
 let startButton;
-let nameInputSection;
-// let highScore = 0;
+
+let doDrawScore = false;
 
 function setup() {
+  // determine if the game should be displayed in full screen
+  windowHeight = window.innerHeight;
+  windowWidth = window.innerWidth;
+  // console.log("aspect ratio", windowWidth / windowHeight);
+  //
+  // if (windowHeight > windowWidth) {
+  //   canvasWidth = windowWidth;
+  //   canvasHeight = windowWidth;
+  // } else {
+  //   canvasWidth = windowHeight;
+  //   canvasHeight = windowHeight;
+  // }
+
+  let tileSize = window.innerHeight / 75;
+  cellWidth = tileSize;
+  cellHeight = tileSize;
+  let canvasWidth = 100 * tileSize;
+
+  if (canvasWidth > window.innerWidth) {
+    tileSize = window.innerWidth / 100;
+    canvasWidth = 100 * tileSize;
+  }
+
+  canvasHeight = gameHeight * tileSize;
+
   // canvas setup
   let canvasHolder = document.getElementById("sketch-holder");
   let canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent(canvasHolder);
 
+  // dom setup
   nameInput = select("#name-input");
   startButton = select("#start-button");
-  nameInputSection = document.getElementById("hide-input-section");
+  sketchOverlay = document.getElementById("sketch-overlay");
+  nameWarningP = document.getElementById("name-warning-p");
 
   startButton.mousePressed(() => {
     let nameValue = nameInput.value();
 
     if (nameValue === "") {
-      alert("Please enter a name");
+      nameWarningP.style.display = "block";
       return;
     }
-    socketHandler.sendStart(nameValue, nameInputSection);
+    socketHandler.sendStart(nameValue, sketchOverlay, nameWarningP);
   });
 
   // cell size setup
@@ -53,9 +81,14 @@ function setup() {
 
   // additional color setup
   backgroundColor = color(255, 0, 100);
+  headColor = color("#121212");
 
   myID = generateUUID();
-  socketHandler = new SocketHandler("ws://localhost:42069/ws", myID);
+  // socketHandler = new SocketHandler(
+  //   "ws://snakes-production.up.railway.app/ws",
+  //   myID,
+  // );
+  socketHandler = new SocketHandler("ws://localhost:8080/ws", myID);
 }
 
 function draw() {
@@ -64,7 +97,7 @@ function draw() {
   checkKey();
   drawSnakes();
   drawMySnake();
-  drawScore();
+  if (doDrawScore) drawScore();
 }
 
 drawGrid = () => {
@@ -117,7 +150,7 @@ function drawSnakes() {
 
     let head = snake.tail[0];
 
-    fill(0);
+    fill(headColor);
     rect(head.x * cellWidth, head.y * cellHeight, cellWidth, cellHeight);
 
     // display snakes name
@@ -145,14 +178,17 @@ function drawSnakes() {
 }
 
 function drawScore() {
-  fill(0);
-  textSize(20);
-  textAlign(LEFT, TOP);
-  // text("Highscore: " + highScore, 10, 30);
   if (mySnake === null || mySnake === undefined) {
-    text("Score: 0", 10, 10);
     return;
   }
+
+  let textW = textWidth("color:  " + mySnake.score);
+  fill(color("rgba(0, 0, 0, 0.5)"));
+  rect(0, 0, textW + 20, 40);
+
+  fill(255);
+  textSize(20);
+  textAlign(LEFT, TOP);
   text("Score: " + mySnake.score, 10, 10);
 }
 
@@ -161,12 +197,12 @@ function drawMySnake() {
     return;
   }
 
-  fill(0, 255, 0);
+  fill(color("#a7c957"));
   mySnake.tail.forEach((cell) => {
     rect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
   });
 
-  fill(0);
+  fill(headColor);
   rect(
     mySnake.tail[0].x * cellWidth,
     mySnake.tail[0].y * cellHeight,

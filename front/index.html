@@ -2,28 +2,50 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-    <script src="sketch.js" defer></script>
-    <script src="socketHandler.js" defer></script>
-    <script src="highscoreHandler.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="js/sketch.js" defer></script>
+    <script src="js/socketHandler.js" defer></script>
+    <script src="js/highscoreHandler.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
-
+    <meta name="description" content="A multiplayer snake game" />
+    <meta name="author" content="Niels Dobbelaar" />
+    <title>Snakes</title>
   </head>
   <body>
     <main>
       <!-- sketch will be shown in here -->
-      <section class="highScoreSection">
-      <h1>Highscores:</h1>
-      <ul id="highscores"></ul>
-      </section>
-      <section class="inputSection">
-        <div id="hide-input-section">
-          <h1>Enter your name</h1>
-          <input type="text" maxlength="7" id="name-input" placeholder="Type a player name" />
-          <button id="start-button">start</button>
-        </div>
-      </section>
-      <div id="sketch-holder"></div>
+      <div class="sketchWrapper" id="sketch-holder"></div>
+      <article class="sketchOverlay" id="sketch-overlay" > 
+        <section class="welcomeSection">
+          <h1>Welcome to: <div class="subHeadingText">Snakes</div></h1>
+        </section>
+        <section class="highScoreSection">
+          <h2>Highscores</h2>
+          <ol id="highscores"></ol>
+        </section>
+        <section class="inputSection">
+          <div class="inputSectionDiv" id="hide-input-section">
+            <input aria-label="Player name input" type="text" maxlength="7" id="name-input" placeholder="Type a player name" />
+            <p id="name-warning-p" >Please enter a name first!</p>
+            <button class="startButton" id="start-button">Start Playing</button>
+          </div>
+        </section>
+        <section class="howTosection">
+          <details>
+            <summary>How to play?</summary>
+            <ul>
+              <li>The goal is to gain as many points as possible by growing your tail the longest. Avoid crashing into other snakes, the walls, or yourself!</li>
+              <li>You can only gain points when there are other snakes on the field.</li>
+              <li>Use the arrow keys to move your snake around the game.</li>
+              <li>See if you can make it to the top of the highscore list!</li>
+            </ul>
+          </details>
+        </section>
+      </article>
     </main>
   </body>
 </html>

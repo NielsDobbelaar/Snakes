@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 	"math/rand/v2"
 	"net/http"
+	"os"
 	"strconv"
 	"sync"
 	"time"
@@ -36,11 +37,10 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
-const port = 42069
 const initialSocketTimeout = 8 * time.Second
 const maxConnections = 2
 const boardWidth = 100
-const boardHeight = 70
+const boardHeight = 75
 
 var (
 	players    []Player
@@ -152,8 +152,13 @@ func main() {
 	})
 
 	handler := enableCORS(mux)
-	fmt.Println("Server started on :" + strconv.Itoa(port))
-	err := http.ListenAndServe(":"+strconv.Itoa(port), handler)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Println("Server started on :" + port)
+	err := http.ListenAndServe(":"+port, handler)
 
 	assert.AssertWithError(err == nil, "Server failed to start", err)
 

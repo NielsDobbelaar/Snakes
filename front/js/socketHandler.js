@@ -17,7 +17,8 @@ class SocketHandler {
       // check if the data is a death message
       if (event.data.startsWith("death")) {
         getSnakes(null, snakes);
-        nameInputSection.style.display = "block";
+        doDrawScore = false;
+        sketchOverlay.style.display = "flex";
         printHighScores();
         return;
       }
@@ -58,8 +59,10 @@ class SocketHandler {
   sendDirection = (direction) => {
     this.socket.send("dir" + direction);
   };
-  sendStart = (name, nameInputSection) => {
-    nameInputSection.style.display = "none";
+  sendStart = (name, sketchOverlay, nameWarningP) => {
+    sketchOverlay.style.display = "none";
+    nameWarningP.style.display = "none";
+    doDrawScore = true;
     this.socket.send("start" + name);
   };
 }

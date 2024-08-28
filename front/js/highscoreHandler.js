@@ -1,7 +1,8 @@
 const highScoresListElement = document.getElementById("highscores");
 
 const printHighScores = () => {
-  fetch("http://localhost:42069/highscores")
+  // fetch("https://snakes-production.up.railway.app/highscores")
+  fetch("http://localhost:8080/highscores")
     .then((response) => {
       return response.json();
     })
@@ -12,9 +13,15 @@ const printHighScores = () => {
       }
       highScoresListElement.innerHTML = "";
       data.forEach((score) => {
-        let scoreElement = document.createElement("li");
-        scoreElement.innerText = `${score.name}: ${score.score}`;
-        highScoresListElement.appendChild(scoreElement);
+        let listElement = document.createElement("li");
+        let nameElement = document.createElement("p");
+        let scoreElement = document.createElement("p");
+        nameElement.innerText = score.name;
+        scoreElement.innerText = score.score;
+        listElement.appendChild(nameElement);
+        listElement.appendChild(scoreElement);
+
+        highScoresListElement.appendChild(listElement);
       });
     });
 };
